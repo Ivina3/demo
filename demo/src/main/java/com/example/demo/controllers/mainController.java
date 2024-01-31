@@ -5,10 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/lox")
+@RequestMapping("/home")
 public class mainController {
-    @GetMapping("/home")
-    public String home(){
-        return "lox";
-    }
+
 }
