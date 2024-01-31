@@ -5,6 +5,12 @@
     <title>Главная</title>
 </head>
 <body>
-
+<ul>
+    <li th:each="post : &{posts}">
+        <h2 th:text="*{title}"></h2>
+        <p th:text="*{text}"></p>
+        <p th:text="&{author}"></p>
+    </li>
+</ul>
 </body>
 </html>
