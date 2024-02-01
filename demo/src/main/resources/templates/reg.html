@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Регистрация</title>
@@ -8,11 +8,13 @@
 <header>
     <a th:href="@{/index}">Главная</a>
     <a th:href="@{/addPost}">Добавить пост</a>
-    <a th:href="@{/login}" th:if="${#authentication == null}">Вход</a>
-    <a th:href="@{/reg}" th:if="${#authentication == null}">Регистрация</a>
-    <form th:action="@{/logout}" method="post" th:if="${#authentication != null}">
-        <input type="submit" value="Выйти">
-    </form>
+    <a th:href="@{/login}" sec:authorize="isAnonymous()">Вход</a>
+    <a th:href="@{/reg}" sec:authorize="isAnonymous()">Регистрация</a>
+    <div sec:authorize="isAuthenticated()">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Выйти">
+        </form>
+    </div>
 </header>
 <form th:action="@{/submit}" th:object="${user}" method="post">
     <label>Имя</label>
@@ -26,7 +28,7 @@
 
     <button type="submit">Сохранить</button>
 </form>
-
-<p th:if="${passwordMismatch} or ${userIsExists}" class="error-message">Неверные данные</p>
+<p th:if="${passwordError}" class="error-message">Неверный пароль</p>
+<p th:if="${userIsExists}" class="error-message">Такой пользователь уже есть</p>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title th:text="&{siteTitle}">какой-то пост</title>
@@ -8,9 +8,9 @@
 <header>
     <a th:href="@{/index}">Главная</a>
     <a th:href="@{/addPost}">Добавить пост</a>
-    <a th:href="@{/login}" th:if="${#authentication == null}">Вход</a>
-    <a th:href="@{/reg}" th:if="${#authentication == null}">Регистрация</a>
-    <form th:action="@{/logout}" method="post" th:if="${#authentication != null}">
+    <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Вход</a>
+    <a th:href="@{/reg}" sec:authorize="!isAuthenticated()">Регистрация</a>
+    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
         <input type="submit" value="Выйти">
     </form>
 </header>
