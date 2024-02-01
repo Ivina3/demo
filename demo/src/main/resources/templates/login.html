@@ -14,7 +14,7 @@
         <input type="submit" value="Выйти">
     </form>
 </header>
-<form th:action="@{/submit}" th:object="${user}" method="post">
+<form th:action="@{/submitlog}" th:object="${user}" method="post">
     <label>Имя</label>
     <input type="text" id="username" name="username" th:field="*{username}" required>
 
@@ -24,6 +24,5 @@
     <button type="submit">Сохранить</button>
 </form>
 <p th:if="${passwordError}" class="error-message">Неверный пароль</p>
-<p th:if="${userIsExists}" class="error-message2">Такой пользователь уже есть</p>
 </body>
 </html>

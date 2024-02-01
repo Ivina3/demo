@@ -45,7 +45,7 @@ public class RegisterController {
         }
         else {
             userService.save(user);
-            return "index";
+            return "redirect:index";
         }
     }
 }
