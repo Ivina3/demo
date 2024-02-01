@@ -5,6 +5,14 @@
     <title th:text="&{siteTitle}">какой-то пост</title>
 </head>
 <body>
-
+<header>
+    <a th:href="@{/index}">Главная</a>
+    <a th:href="@{/addPost}">Добавить пост</a>
+    <a th:href="@{/login}" th:if="${#authentication == null}">Вход</a>
+    <a th:href="@{/reg}" th:if="${#authentication == null}">Регистрация</a>
+    <form th:action="@{/logout}" method="post" th:if="${#authentication != null}">
+        <input type="submit" value="Выйти">
+    </form>
+</header>
 </body>
 </html>

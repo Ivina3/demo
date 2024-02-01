@@ -21,11 +21,10 @@ public class PostServiceImpl implements PostService{
     @Override
     public void update(Post newPost) {
         Post updatablePost = postRepository.findById(newPost.getId()).orElse(null);
-    if (updatablePost != null){
-        updatablePost.setText(newPost.getText());
-        updatablePost.setTitle(newPost.getTitle());
-        postRepository.save(updatablePost);
-    }
-
+        if (updatablePost != null){
+            updatablePost.setText(newPost.getText());
+            updatablePost.setTitle(newPost.getTitle());
+            postRepository.save(updatablePost);
+        }
     }
 }

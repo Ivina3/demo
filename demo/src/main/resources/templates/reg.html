@@ -5,6 +5,28 @@
     <title>Регистрация</title>
 </head>
 <body>
+<header>
+    <a th:href="@{/index}">Главная</a>
+    <a th:href="@{/addPost}">Добавить пост</a>
+    <a th:href="@{/login}" th:if="${#authentication == null}">Вход</a>
+    <a th:href="@{/reg}" th:if="${#authentication == null}">Регистрация</a>
+    <form th:action="@{/logout}" method="post" th:if="${#authentication != null}">
+        <input type="submit" value="Выйти">
+    </form>
+</header>
+<form th:action="@{/submit}" th:object="${user}" method="post">
+    <label>Имя</label>
+    <input type="text" id="username" name="username" th:field="*{username}" required>
 
+    <label>Пароль</label>
+    <input type="password" id="password" name="password" th:field="*{password}" required/>
+
+    <label>Подтвердите пароль</label>
+    <input type="password" id="password2" name="passwordAnother" th:value="${passwordAnother}" required/>
+
+    <button type="submit">Сохранить</button>
+</form>
+
+<p th:if="${passwordMismatch} or ${userIsExists}" class="error-message">Неверные данные</p>
 </body>
 </html>

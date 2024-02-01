@@ -2,6 +2,7 @@ package com.example.demo.services.users;
 
 import com.example.demo.models.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -16,7 +17,7 @@ public class UserDetails implements org.springframework.security.core.userdetail
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList();
+        return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
     }
 
     @Override
