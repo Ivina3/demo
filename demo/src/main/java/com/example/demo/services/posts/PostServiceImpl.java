@@ -2,7 +2,9 @@ package com.example.demo.services.posts;
 
 import com.example.demo.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PostServiceImpl implements PostService{
 
     @Autowired
@@ -26,5 +28,10 @@ public class PostServiceImpl implements PostService{
             updatablePost.setTitle(newPost.getTitle());
             postRepository.save(updatablePost);
         }
+    }
+
+    @Override
+    public Post findById(long id) {
+        return postRepository.findById(id).orElse(null);
     }
 }
