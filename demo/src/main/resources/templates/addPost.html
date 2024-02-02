@@ -15,7 +15,7 @@
         <input type="submit" value="Выйти">
     </form>
 </header>
-    <form th:action="@{${isAdd}? '/addNewPost' : '/updateNewPost'}" th:object="${post}" method="post">
+    <form th:action="@{${isAdd}? '/addNewPost' : '/updateNewPost'+ ${post.id}}" th:object="${post}" method="post">
         <label>Заголовок</label>
         <input type="text" id="title" name="title" th:field="*{title}" required>
 

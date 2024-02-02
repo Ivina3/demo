@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,6 +35,7 @@ public class AddPostController {
             Post existingPost = postService.findById(postId);
             model.addAttribute("post", existingPost);
             model.addAttribute("isAdd", false);
+            model.addAttribute("postId", postId);
         } else {
             model.addAttribute("post", new Post());
             model.addAttribute("isAdd", true);
@@ -68,10 +70,10 @@ public class AddPostController {
         }
     }
 
-    @PostMapping("/updateNewPost")
-    public String updatePost(Post post){
+    @PostMapping("/updateNewPost{postId}")
+    public String updatePost(@PathVariable long postId, Post post){
         if (!post.getTitle().equals("")){
-            postService.update(post);
+            postService.update(post, postId);
             return "redirect:index";
         }
         else {
