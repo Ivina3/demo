@@ -8,13 +8,11 @@
 <header>
     <a th:href="@{/index}">Главная</a>
     <a th:href="@{/addPost}">Добавить пост</a>
-    <a th:href="@{/login}" sec:authorize="isAnonymous()">Вход</a>
-    <a th:href="@{/reg}" sec:authorize="isAnonymous()">Регистрация</a>
-    <div sec:authorize="isAuthenticated()">
-        <form th:action="@{/logout}" method="post">
-            <input type="submit" value="Выйти">
-        </form>
-    </div>
+    <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Вход</a>
+    <a th:href="@{/reg}" sec:authorize="!isAuthenticated()">Регистрация</a>
+    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+        <input type="submit" value="Выйти">
+    </form>
 </header>
 <form th:action="@{/submit}" th:object="${user}" method="post">
     <label>Имя</label>
