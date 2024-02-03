@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Post;
-import com.example.demo.models.User;
 import com.example.demo.services.posts.PostService;
 import com.example.demo.services.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,8 @@ public class AddPostController {
             model.addAttribute("post", existingPost);
             model.addAttribute("isAdd", false);
             model.addAttribute("postId", postId);
-        } else {
+        }
+        else {
             model.addAttribute("post", new Post());
             model.addAttribute("isAdd", true);
         }

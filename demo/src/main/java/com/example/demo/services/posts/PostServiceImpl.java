@@ -4,6 +4,8 @@ import com.example.demo.models.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostServiceImpl implements PostService{
 
@@ -29,6 +31,11 @@ public class PostServiceImpl implements PostService{
             updatablePost.setTitle(newPost.getTitle());
             postRepository.save(updatablePost);
         }
+    }
+
+    @Override
+    public List<Post> findAll() {
+        return postRepository.findAll();
     }
 
     @Override

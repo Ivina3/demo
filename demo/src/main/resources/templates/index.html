@@ -19,7 +19,7 @@
     <li th:if="${not #lists.isEmpty(posts)}" th:each="post : ${posts}">
         <h2 th:text="${post.title}"></h2>
         <p th:text="${post.text}"></p>
-        <p th:text="${post.author}"></p>
+        <p th:text="${post.author_id}"></p>
     </li>
     <li th:if="${#lists.isEmpty(posts)}">
         <p>No posts available</p>
