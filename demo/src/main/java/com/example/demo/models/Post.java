@@ -18,4 +18,6 @@ public class Post {
     String text;
     @Nonnull
     long author_id;
+    @Nonnull
+    String author_name;
 }

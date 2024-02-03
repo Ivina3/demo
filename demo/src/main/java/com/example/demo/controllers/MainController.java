@@ -20,7 +20,7 @@ public class MainController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String index(Model model){
         List<Post> posts = postService.findAll();
         model.addAttribute("posts",posts);

@@ -1,0 +1,10 @@
+<header xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <a th:href="@{/}">Главная</a>
+    <a th:href="@{/addPost}">Добавить пост</a>
+    <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Вход</a>
+    <a th:href="@{/reg}" sec:authorize="!isAuthenticated()">Регистрация</a>
+    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+        <input type="submit" value="Выйти">
+    </form>
+</header>
+

@@ -6,15 +6,7 @@
 </head>
 
 <body>
-<header>
-    <a th:href="@{/index}">Главная</a>
-    <a th:href="@{/addPost}">Добавить пост</a>
-    <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Вход</a>
-    <a th:href="@{/reg}" sec:authorize="!isAuthenticated()">Регистрация</a>
-    <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
-        <input type="submit" value="Выйти">
-    </form>
-</header>
+<div th:replace="headerFragment :: header"></div>
     <form th:action="@{${isAdd}? '/addNewPost' : '/updateNewPost'+ ${post.id}}" th:object="${post}" method="post">
         <label>Заголовок</label>
         <input type="text" id="title" name="title" th:field="*{title}" required>

@@ -41,13 +41,13 @@ public class SecurityConfig implements WebMvcConfigurer {
                         loginConfigurer
                                 .loginPage("/login") // Своя страница входа
                                 .loginProcessingUrl("/submitlog") // Изменил адрес для обработки логина
-                                .defaultSuccessUrl("/index", true) // URL при успешной аутентификации
+                                .defaultSuccessUrl("/", true) // URL при успешной аутентификации
                                 .failureUrl("/login?error=true") // URL при ошибке аутентификации
                                 .permitAll()
                 )
                 .logout(logoutConfigurer ->
                         logoutConfigurer
-                                .logoutSuccessUrl("/index") // URL при успешном выходе
+                                .logoutSuccessUrl("/") // URL при успешном выходе
                                 .permitAll()
                 )
                 .csrf(csrf -> csrf

@@ -61,9 +61,10 @@ public class AddPostController {
 
                 // Установить идентификатор пользователя в ваш объект Post
                 post.setAuthor_id(currentUserId);
+                post.setAuthor_name(currentUsername);
                 postService.save(post);
             }
-            return "redirect:index";
+            return "redirect:/";
         }
         else {
             return "addPost";
@@ -74,7 +75,7 @@ public class AddPostController {
     public String updatePost(@PathVariable long postId, Post post){
         if (!post.getTitle().equals("")){
             postService.update(post, postId);
-            return "redirect:index";
+            return "redirect:/";
         }
         else {
             return "addPost";
