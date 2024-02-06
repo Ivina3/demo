@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${siteTitle}">пост</title>
+</head>
+
+<body>
+<div th:replace="headerFragment :: header"></div>
+    <form th:action="@{${isAdd}? '/addNewPost' : '/updateNewPost'+ ${post.id}}" th:object="${post}" method="post">
+        <label>Заголовок</label>
+        <input type="text" id="title" name="title" th:field="*{title}" required>
+
+        <label>Текст статьи</label>
+        <input type="text" id="text" name="text" th:field="*{text}" required/>
+
+        <button type="submit">Сохранить</button>
+    </form>
+    <form th:unless="${isAdd}" th:action="@{'/deletePost'+ ${post.id}}" th:object="${post}" method="post">
+        <button type="submit" >Удалить</button>
+    </form>
+</body>
+</html>

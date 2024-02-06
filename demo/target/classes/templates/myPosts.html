@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Главная</title>
+</head>
+<body>
+
+<div th:replace="headerFragment :: header"></div>
+<ul>
+  <li th:if="${not #lists.isEmpty(posts)}" th:each="post : ${posts}">
+    <h2 th:text="${post.title}"></h2>
+    <form th:action="@{/updatePost}" method="get">
+      <input type="hidden" th:name="postId" th:value="${post.id}" />
+      <button type="submit" >Редактировать</button>
+    </form>
+  </li>
+  <li th:if="${#lists.isEmpty(posts)}">
+    <p>No posts available</p>
+  </li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <title>Вход</title>
+</head>
+<body>
+<div th:replace="headerFragment :: header"></div>
+
+<form th:action="@{/submitlog}" th:object="${user}" method="post">
+    <label>Имя</label>
+    <input type="text" id="username" name="username" th:field="*{username}" required>
+
+    <label>Пароль</label>
+    <input type="password" id="password" name="password" th:field="*{password}" required/>
+
+    <button type="submit">Сохранить</button>
+</form>
+<p th:if="${passwordError}" class="error-message">Неверный пароль</p>
+</body>
+</html>
