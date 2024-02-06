@@ -3,6 +3,7 @@
     <a th:href="@{/addPost}">Добавить пост</a>
     <a th:href="@{/login}" sec:authorize="!isAuthenticated()">Вход</a>
     <a th:href="@{/reg}" sec:authorize="!isAuthenticated()">Регистрация</a>
+    <a th:href="@{/myPosts}" sec:authorize="isAuthenticated()">Мои посты</a>
     <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
         <input type="submit" value="Выйти">
     </form>

@@ -32,6 +32,12 @@ public class AddPostController {
     public String showPageUpdate(@RequestParam(name = "postId", required = false) Long postId, Model model){
         if (postId != null) {
             Post existingPost = postService.findById(postId);
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String currentUsername = userDetails.getUsername();
+            Long currentUserId = userService.findByUsername(currentUsername).getId();
+            if (existingPost.getAuthorId() != currentUserId)
+                return "redirect:/";
             model.addAttribute("post", existingPost);
             model.addAttribute("isAdd", false);
             model.addAttribute("postId", postId);
@@ -60,7 +66,7 @@ public class AddPostController {
                 Long currentUserId = userService.findByUsername(currentUsername).getId();
 
                 // Установить идентификатор пользователя в ваш объект Post
-                post.setAuthor_id(currentUserId);
+                post.setAuthorId(currentUserId);
                 post.setAuthor_name(currentUsername);
                 postService.save(post);
             }
@@ -80,5 +86,11 @@ public class AddPostController {
         else {
             return "addPost";
         }
+    }
+
+    @PostMapping("/deletePost{postId}")
+    public String deletePost(@PathVariable long postId){
+        postService.deleteById(postId);
+        return "redirect:/";
     }
 }

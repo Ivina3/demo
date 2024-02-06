@@ -1,6 +1,7 @@
 package com.example.demo.services.posts;
 
 import com.example.demo.models.Post;
+import com.example.demo.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,10 @@ public class PostServiceImpl implements PostService{
     @Override
     public Post findById(long id) {
         return postRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Post> findAllByAuthorId(Long authorId) {
+        return postRepository.findAllByAuthorId(authorId);
     }
 }

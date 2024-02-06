@@ -6,5 +6,10 @@
 </head>
 <body>
 <div th:replace="headerFragment :: header"></div>
+<div th:object="&{post}">
+    <h2 th:text="${post.title}"></h2>
+    <p th:text="${post.text}"></p>
+    <p th:text="${post.author_name}"></p>
+</div>
 </body>
 </html>

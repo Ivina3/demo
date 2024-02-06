@@ -16,5 +16,8 @@
 
         <button type="submit">Сохранить</button>
     </form>
+    <form th:unless="${isAdd}" th:action="@{'/deletePost'+ ${post.id}}" th:object="${post}" method="post">
+        <button type="submit" >Удалить</button>
+    </form>
 </body>
 </html>

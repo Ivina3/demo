@@ -17,7 +17,7 @@ public class Post {
     String title;
     String text;
     @Nonnull
-    long author_id;
+    long authorId;
     @Nonnull
     String author_name;
 }

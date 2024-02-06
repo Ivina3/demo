@@ -2,6 +2,7 @@ package com.example.demo.services.posts;
 
 import com.example.demo.models.Post;
 
+
 import java.util.List;
 
 public interface PostService {
@@ -11,4 +12,5 @@ public interface PostService {
 
     List<Post> findAll();
     Post findById(long id);
+    List<Post> findAllByAuthorId(Long authorId);
 }

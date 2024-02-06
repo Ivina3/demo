@@ -35,6 +35,7 @@ public class SecurityConfig implements WebMvcConfigurer {
                         authorizeRequests
                                 .requestMatchers("/addPost").authenticated()
                                 .requestMatchers("/updatePost").authenticated()
+                                .requestMatchers("/myPosts").authenticated()
                                 .anyRequest().permitAll()
                 )
                 .formLogin(loginConfigurer ->
